@@ -7,6 +7,7 @@ endif
 let g:loaded_bing_translate = 1
 
 let s:BING_TRANSLATE_API = "http://api.bing.net/json.aspx"
+let s:NORESULT_MESSAGE = "No result. Please try agein a few second after."
 
 " 直前にヤンクした内容を取得する
 function! s:GetYankedSentence()
@@ -51,7 +52,7 @@ function! TranslateRange() range
     try
         echo l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"]
     catch
-        echo "No result. Please try agein a few seconde after."
+        echo s:NORESULT_MESSAGE
     endtry
 endfunction
 
@@ -65,7 +66,7 @@ function! TranslateYankedSentence()
     try
         echo l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"]
     catch
-        echo "No result. Please try agein a few second after."
+        echo s:NORESULT_MESSAGE
     endtry
 endfunction
 
