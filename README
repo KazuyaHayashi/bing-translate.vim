@@ -23,8 +23,16 @@ let g:BING_APPID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 選択した状態で
 :call TranslateRange()
 を実行することで翻訳結果が表示されます。
+
+翻訳したい文章をヤンクし、以下のコマンドを実行します。
+:call TranslateYankedSentence()
+ヤンクした内容の翻訳結果が表示されます。
+
 翻訳結果が得られない場合がありますので、その時は数秒待ってから再実行してください。
 
 * 更新履歴
+0.2 2011/10/01
+    - ヤンクした内容を翻訳する処理を追加
+
 0.1 2011/09/30
     - 初版
