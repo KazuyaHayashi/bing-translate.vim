@@ -1,0 +1,26 @@
+==================
+bing-translate.vim
+==================
+
+Version: 0.1
+Author : Kazuya Hayashi <pumpkin.brownies@gmail.com>
+
+* 必要なもの
+bing の AppID
+https://signup.live.com/signup.aspx 
+から取得してください
+
+* 設定
+vimrc に取得した AppID を設定してください
+let g:BING_APPID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+* 使い方
+ヴィジュアルモードで、翻訳したい文章を範囲選択します。
+選択した状態で
+:call TranslateRange()
+を実行することで翻訳結果が表示されます。
+翻訳結果が得られない場合がありますので、その時は数秒待ってから再実行してください。
+
+* 更新履歴
+0.1 2011/09/30
+    - 初版
