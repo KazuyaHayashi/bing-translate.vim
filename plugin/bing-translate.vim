@@ -7,7 +7,6 @@ endif
 let g:loaded_bing_translate = 1
 
 let s:BING_TRANSLATE_API = "http://api.bing.net/json.aspx"
-let s:NORESULT_MESSAGE = "No result. Please try agein a few second after."
 
 " 直前にヤンクした内容を取得する
 function! s:GetYankedSentence()
@@ -25,6 +24,16 @@ function! s:ListToString(list)
         let l:string = l:string.nonewline
     endfor
     return l:string
+endfunction
+
+function! ShowResult(result)
+    silent pedit! bing-traslate-result
+    wincmd p
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal noswapfile
+    call append(0, a:result)
+    wincmd p
 endfunction
 
 function! s:TranslateRequest(string)
@@ -50,10 +59,11 @@ function! TranslateRange() range
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
-        echo l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"]
+        call ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
     catch
-        echo s:NORESULT_MESSAGE
+        call ShowResult("No result. Please try agein a few second after.")
     endtry
+    "call: ShowResult(l:result)
 endfunction
 
 " 直前にヤンクした内容を翻訳する
@@ -64,9 +74,9 @@ function! TranslateYankedSentence()
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
-        echo l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"]
+        call ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
     catch
-        echo s:NORESULT_MESSAGE
+        call ShowResult("No result. Please try agein a few second after.")
     endtry
 endfunction
 

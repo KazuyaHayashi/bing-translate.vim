@@ -2,7 +2,7 @@
 bing-translate.vim
 ==================
 
-Version: 0.2
+Version: 0.3
 Author : Kazuya Hayashi <pumpkin.brownies@gmail.com>
 
 * 必要なもの
@@ -30,7 +30,14 @@ let g:BING_APPID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 翻訳結果が得られない場合がありますので、その時は数秒待ってから再実行してください。
 
+* 参考
+VimでGoogle翻訳
+http://blog.blueblack.net/item_410
+
 * 更新履歴
+0.3 2011/10/1
+    - 翻訳結果をプレビューウィンドウ上に表示するよう変更
+
 0.2 2011/10/01
     - ヤンクした内容を翻訳する処理を追加
 
