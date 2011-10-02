@@ -26,7 +26,7 @@ function! s:ListToString(list)
     return l:string
 endfunction
 
-function! ShowResult(result)
+function! s:ShowResult(result)
     silent pedit! bing-traslate-result
     wincmd p
     setlocal buftype=nofile
