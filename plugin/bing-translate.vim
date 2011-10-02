@@ -17,15 +17,7 @@ function! s:GetYankedSentence()
     return l:selected
 endfunction
 
-function! s:ListToString(list)
-    let l:string = ""
-    for line in a:list
-        let nonewline = substitute(line, "\n", "", "g")
-        let l:string = l:string.nonewline
-    endfor
-    return l:string
-endfunction
-
+" プレビューウィンドウに表示する
 function! s:ShowResult(result)
     silent pedit! bing-traslate-result
     wincmd p
@@ -36,6 +28,7 @@ function! s:ShowResult(result)
     wincmd p
 endfunction
 
+" bing の API へ get リクエストを投げる
 function! s:TranslateRequest(string)
     let l:result_json = http#get(
         \s:BING_TRANSLATE_API, 
@@ -54,8 +47,8 @@ endfunction
 function! TranslateRange() range
     " 範囲指定した内容を各行のリストとして取得する
     let l:lines = getline(a:firstline, a:lastline)
-    let l:string = s:ListToString(l:lines)
-    let l:traslate_result = s:TranslateRequest(l:string)
+    let l:sentence = join(l:lines, "\n")
+    let l:traslate_result = s:TranslateRequest(l:sentence)
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
@@ -63,14 +56,12 @@ function! TranslateRange() range
     catch
         call s:ShowResult("No result. Please try agein a few second after.")
     endtry
-    "call: ShowResult(l:result)
 endfunction
 
 " 直前にヤンクした内容を翻訳する
 function! TranslateYankedSentence()
     let l:sentence = s:GetYankedSentence()
-    let l:string = s:ListToString(split(l:sentence, "\n"))
-    let l:traslate_result = s:TranslateRequest(l:string)
+    let l:traslate_result = s:TranslateRequest(l:sentence)
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
