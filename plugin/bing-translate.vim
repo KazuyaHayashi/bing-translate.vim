@@ -59,9 +59,9 @@ function! TranslateRange() range
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
-        call ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
+        call s:ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
     catch
-        call ShowResult("No result. Please try agein a few second after.")
+        call s:ShowResult("No result. Please try agein a few second after.")
     endtry
     "call: ShowResult(l:result)
 endfunction
@@ -74,9 +74,9 @@ function! TranslateYankedSentence()
     
     " 翻訳結果が入ってない場合もあるので例外処理を行う
     try
-        call ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
+        call s:ShowResult(l:traslate_result["SearchResponse"]["Translation"]["Results"][0]["TranslatedTerm"])
     catch
-        call ShowResult("No result. Please try agein a few second after.")
+        call s:ShowResult("No result. Please try agein a few second after.")
     endtry
 endfunction
 
